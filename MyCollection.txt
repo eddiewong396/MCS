@@ -1,0 +1,127 @@
+Create My Collections System Rails Application:
+rails MCS
+
+Create Asset Management System Controllers:
+ruby script/generate controller Administrator
+ruby script/generate controller User
+ruby script/generate controller Brand
+ruby script/generate controller Category
+
+Create Asset Management System Models:
+ruby script/generate model Administrator
+ruby script/generate model User
+ruby script/generate model Brand
+ruby script/generate model Category
+
+Create Asset Management System Views:
+ruby script/generate view Administrator
+ruby script/generate view User
+ruby script/generate view Brand
+ruby script/generate view Category
+
+Database for Asset Management System:
+CREATE DATABASE MCS_development
+CREATE DATABASE MCS_test
+CREATE DATABASE MCS_production
+
+config/database.yml:
+development:
+	adapter: mysql
+	database: MCS_development
+	host: localhost
+	username:
+	password:
+	
+test:
+	adapter: mysql
+	database: MCS_test
+	host: localhost
+	username:
+	password:
+	
+production:
+	adapter: mysql
+	database: MCS_production
+	host: localhost
+	username:
+	password:
+
+Create Tables For The Database:
+ruby script/generate migrate Administrator
+ruby script/generate migrate User
+ruby script/generate migrate Brand
+ruby script/generate migrate Category
+
+db/001_Administrator.rb:
+class Administrator < ActiveRecord::Migration
+
+  def self.up
+    create_table :administrators do |table|
+      table.column :administrator_name, :string
+      table.column :username, :string
+      table.column :password, :string
+      table.column :email, :string
+    end
+  end
+
+  def self.down
+    drop_table :administrators
+  end
+end
+
+db/002_Category.rb:
+class Category < ActiveRecord::Migration
+
+  def self.up
+    create_table :categories do |table|
+      table.column :category_name, :string
+      table.column :description, :text
+    end
+  end
+
+  def self.down
+    drop_table :categories
+  end
+end
+
+db/003_User.rb:
+class User < ActiveRecord::Migration
+
+  def self.up
+    create_table :users do |table|
+      table.column :username, :string
+      table.column :password, :string
+      table.column :firstname, :string
+      table.column :lastname, :string
+      table.column :address01, :string
+      table.column :address02, :string
+      table.column :country, :string
+      table.column :email, :string
+      table.column :contact01, :string
+      table.column :contact02, :string
+    end
+  end
+
+  def self.down
+    drop_table :users
+  end
+end
+
+db/004_Department.rb:
+class Brand < ActiveRecord::Migration
+
+  def self.up
+    create_table :brands do |table|
+      table.column :brand_name, :string
+      table.column :description, :text
+    end
+  end
+
+  def self.down
+    drop_table :brands
+  end
+end
+
+Create Tables:
+rake migrate::db
+
